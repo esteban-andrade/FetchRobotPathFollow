@@ -3,6 +3,8 @@ project(fetch_robot_path_follow)
 
 find_package(Boost REQUIRED)
 find_package(gazebo REQUIRED)
+find_package(OpenCV)
+find_package(Eigen3 REQUIRED)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -21,6 +23,11 @@ find_package(catkin REQUIRED COMPONENTS
     std_msgs
     sensor_msgs
     roslib
+    control_msgs
+   geometry_msgs
+   cv_bridge
+   image_transport
+   message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -141,6 +148,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
   ${GAZEBO_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 
@@ -153,6 +162,7 @@ link_directories(
 #   src/${PROJECT_NAME}/FetchRobotPathFollow.cpp
 # )
 add_library(${PROJECT_NAME} src/plugin.cpp)
+add_library(${PROJECT_NAME}-laserScan src/laserScan.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -162,6 +172,8 @@ add_library(${PROJECT_NAME} src/plugin.cpp)
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}-teleop src/robot_ps4_controller.cpp)
+add_executable(${PROJECT_NAME}-sensing src/main.cpp src/environmentSensing.cpp)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -172,13 +184,14 @@ add_executable(${PROJECT_NAME}-teleop src/robot_ps4_controller.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(${PROJECT_NAME}-teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-teleop
   ${catkin_LIBRARIES}
 )
-
+target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
 #############
 ## Install ##
 #############
