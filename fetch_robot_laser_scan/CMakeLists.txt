@@ -14,9 +14,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
-rospy
-roslib	
-
+  rospy
+  roslib	
+  cv_bridge
+  image_transport
+   message_generation
 )
 
 
@@ -30,7 +32,8 @@ roslib
 #message ( STATUS " CMake C++ FLAGS ${CMAKE_CXX_FLAGS}")
 ## System dependencies are found with CMake's conventions
 #find_package(Boost REQUIRED COMPONENTS system)
-
+find_package(OpenCV)
+find_package(Eigen3 REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -131,8 +134,10 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+ include
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -152,7 +157,7 @@ add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${c
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/fetch_robot_laser_scan_node.cpp)
-target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan)
+target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

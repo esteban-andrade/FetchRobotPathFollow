@@ -20,16 +20,16 @@
 class EnvironmentSensing
 {
 private:
-    //ros::NodeHandle nh_;
+    ros::NodeHandle nh_;
     ros::Subscriber sub1_;
     double laser_readings_;
     bool obstacle_detected_;
     void laserCallBack(const sensor_msgs::LaserScanConstPtr &);
 
 public:
-    ros::NodeHandle nh_;
+    //ros::NodeHandle nh_;
     LaserDetection laserDetection_;
-    EnvironmentSensing(ros::NodeHandle nh);
+    EnvironmentSensing(ros::NodeHandle);
     void status();
 };
 
