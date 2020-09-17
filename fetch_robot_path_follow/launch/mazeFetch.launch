@@ -17,11 +17,11 @@
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="headless" value="$(arg headless)"/>
-    <arg name="world_name" value="$(find FetchRobotPathFollow)/worlds/maze3.sdf"/>
+    <arg name="world_name" value="$(find fetch_robot_path_follow)/worlds/maze3.sdf"/>
   </include>
 
   <!-- Launch Fetch Robot -->
-  <include file="$(find fetch_gazebo)/launch/include/$(arg robot).launch.xml" />
+  <include file="$(find fetch_robot_path_follow)/launch/include/$(arg robot).launch.xml" />
   
   <!-- Launch turtlebot as robot1 -->
   <group ns="robot1">
@@ -36,7 +36,7 @@
 
   <!-- Start DS4 teleop -->
   <node pkg="joy" type="joy_node" name="joy_node"/>
-  <node name="teleop" pkg="FetchRobotPathFollow" type="FetchRobotPathFollow-teleop" args="-d $(find FetchRobotPathFollow)" output="screen" respawn="true">
+  <node name="teleop" pkg="fetch_robot_path_follow" type="fetch_robot_path_follow-teleop" args="-d $(find fetch_robot_path_follow)" output="screen" respawn="true">
       <remap from="/cmd_vel" to="$(arg teleop_topic)"/>
   </node>
 </launch>
