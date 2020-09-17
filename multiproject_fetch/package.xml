@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>multiproject_fetch</name>
+  <version>0.1.0</version>
+  <description>
+    Gazebo package for Fetch multiproject
+  </description>
+  <author>Esteban Andrade</author>
+  <maintainer email="esgaanza98@gmail.com">Esteban Andrade</maintainer>
+
+  <license>BSD</license>
+  <url>http://ros.org/wiki/fetch_gazebo</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>angles</build_depend>
+  <build_depend>gazebo_dev</build_depend>
+ <build_depend>control_msgs</build_depend>
+
+ <exec_depend>roscpp</exec_depend>
+ <exec_depend>rospy</exec_depend>
+  <depend>control_toolbox</depend>
+  <depend>boost</depend>
+  <depend>gazebo_plugins</depend>
+  <depend>gazebo_ros</depend>
+  <depend>robot_controllers</depend>
+  <depend>robot_controllers_interface</depend>
+  <depend>sensor_msgs</depend>
+
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>depth_image_proc</exec_depend>
+  <exec_depend>fetch_description</exec_depend>
+  <exec_depend>gazebo</exec_depend>
+  <exec_depend>image_proc</exec_depend>
+  <exec_depend>nodelet</exec_depend>
+  <exec_depend>rgbd_launch</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <exec_depend>xacro</exec_depend>
+ <exec_depend>roscpp</exec_depend>
+ <exec_depend>rospy</exec_depend>
+ <exec_depend>control_msgs</exec_depend>
+  <export><gazebo_ros plugin_path="${prefix}/../../lib" gazebo_media_path="${prefix}" /></export>
+</package>
