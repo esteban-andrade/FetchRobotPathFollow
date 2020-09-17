@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(FetchRobotPathFollow)
+project(fetch_robot_path_follow)
+
+find_package(Boost REQUIRED)
+find_package(gazebo REQUIRED)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,16 +11,32 @@ project(FetchRobotPathFollow)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
-  sensor_msgs
-  roslib
+   angles
+    control_toolbox
+    gazebo_ros
+    robot_controllers
+    robot_controllers_interface
+    roscpp
+    rospy	
+    std_msgs
+    sensor_msgs
+    roslib
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
+# Check for c++11 / c++0x support
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "-std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+    set(CMAKE_CXX_FLAGS "-std=c++0x")
+else()
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -120,13 +139,20 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIR}
+  ${GAZEBO_INCLUDE_DIRS}
+)
+
+
+link_directories(
+  ${GAZEBO_LIBRARY_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/FetchRobotPathFollow.cpp
 # )
-
+add_library(${PROJECT_NAME} src/plugin.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -148,6 +174,7 @@ add_executable(${PROJECT_NAME}-teleop src/robot_ps4_controller.cpp)
 add_dependencies(${PROJECT_NAME}-teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-teleop
   ${catkin_LIBRARIES}
 )
