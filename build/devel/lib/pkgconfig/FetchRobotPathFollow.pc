@@ -1,8 +1,0 @@
-prefix=/home/ajal/catkin_ws/src/FetchRobotPathFollow/build/devel
-
-Name: FetchRobotPathFollow
-Description: Description of FetchRobotPathFollow
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
