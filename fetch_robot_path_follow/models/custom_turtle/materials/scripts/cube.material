@@ -1,0 +1,14 @@
+material cube/Diffuse
+{
+    reieve_shadows off
+    techniques
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture cubetexture.png
+            }
+        }
+    }
+}
