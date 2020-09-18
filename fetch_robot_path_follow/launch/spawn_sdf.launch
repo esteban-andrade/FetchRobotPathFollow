@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="robot_name" default=""/>
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>   
+    <arg name="z" default="0.0"/>   
+    <arg name="sdf_robot_file" default=""/>
+
+    <node pkg="gazebo_ros" type="spawn_model" name="$(arg robot_name)_spawn_urdf" respawn="false" output="screen"
+    args="-file $(arg sdf_robot_file) -sdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg robot_name)"/>
+</launch>
