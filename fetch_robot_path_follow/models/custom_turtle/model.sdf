@@ -290,6 +290,7 @@
         </geometry>
         <material>
           <lighting>1</lighting>
+          <!-- textures no working -->
           <script>
             <uri>model://custom_turtle/materials/scripts</uri>
             <uri>model://custom_turtle/materials/textures</uri>
