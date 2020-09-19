@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.90.0 commit date:2020-08-31, commit time:11:26, hash:0330d1af29c0</authoring_tool>
     </contributor>
-    <created>2020-09-19T00:45:16</created>
-    <modified>2020-09-19T00:45:16</modified>
+    <created>2020-09-19T15:56:43</created>
+    <modified>2020-09-19T15:56:43</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -78,14 +78,14 @@
   <library_effects>
     <effect id="Material-effect">
       <profile_COMMON>
-        <newparam sid="cubetexture_png_001-surface">
+        <newparam sid="cubetexture-surface">
           <surface type="2D">
-            <init_from>cubetexture_png_001</init_from>
+            <init_from>cubetexture</init_from>
           </surface>
         </newparam>
-        <newparam sid="cubetexture_png_001-sampler">
+        <newparam sid="cubetexture-sampler">
           <sampler2D>
-            <source>cubetexture_png_001-surface</source>
+            <source>cubetexture-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -94,7 +94,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="cubetexture_png_001-sampler" texcoord="UVMap"/>
+              <texture texture="cubetexture-sampler" texcoord="UVMap"/>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.45</float>
@@ -105,8 +105,8 @@
     </effect>
   </library_effects>
   <library_images>
-    <image id="cubetexture_png_001" name="cubetexture_png_001">
-      <init_from>cubetexture.png.001.png</init_from>
+    <image id="cubetexture" name="cubetexture">
+      <init_from>cubetexture.png</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -169,7 +169,7 @@
         <instance_light url="#Light-light"/>
       </node>
       <node id="Cube" name="Cube" type="NODE">
-        <matrix sid="transform">0.0025 0 0 0 0 0.2 0 0 0 0 -0.75 0 0 0 0 1</matrix>
+        <matrix sid="transform">0.0025 0 0 0 0 0.2 0 0 0 0 0.45 0 0 0 0 1</matrix>
         <instance_geometry url="#Cube-mesh" name="Cube">
           <bind_material>
             <technique_common>

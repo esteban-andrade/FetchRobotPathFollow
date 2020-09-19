@@ -1,14 +1,14 @@
-material cube/Diffuse
+material cube
 {
-    reieve_shadows off
-    techniques
+  technique
+  {
+    pass
     {
-        pass
-        {
-            texture_unit
-            {
-                texture cubetexture.png
-            }
-        }
+      texture_unit
+      {
+        texture cubetexture.png
+	scale 1 1
+      }
     }
+  }
 }
