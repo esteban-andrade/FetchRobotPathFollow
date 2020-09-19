@@ -7,7 +7,7 @@ Note: If all the models do not launch. Please do the following.
  Open /home/.gazebo   
  and place all the files that are within the models folder in that directory. 
 
-For QR code detection install the following: (yoiu may need to install pip)
+For QR code detection install the following: (you may need to install pip)
 
 ```bash
 sudo apt-get install libzbar0
