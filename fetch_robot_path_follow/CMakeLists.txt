@@ -161,7 +161,7 @@ link_directories(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/FetchRobotPathFollow.cpp
 # )
-add_library(${PROJECT_NAME} src/plugin.cpp)
+# add_library(${PROJECT_NAME} src/plugin.cpp)
 add_library(${PROJECT_NAME}-laserScan src/laserScan.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -187,7 +187,7 @@ add_dependencies(${PROJECT_NAME}-teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${ca
 add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+# target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-teleop
   ${catkin_LIBRARIES}
 )

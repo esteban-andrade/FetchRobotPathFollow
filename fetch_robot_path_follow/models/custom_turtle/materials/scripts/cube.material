@@ -1,0 +1,14 @@
+material cube
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture cubetexture.png
+	scale 1 1
+      }
+    }
+  }
+}
