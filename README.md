@@ -8,7 +8,7 @@ Here is the Repository for Fetch robot following a Path based on QR codes.
  cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/
  ```
 
-For QR code detection install the following: (you may need to install pip)
+~~For QR code detection install the following: (you may need to install pip)~~
 
 ```bash
 sudo apt-get install libzbar0
@@ -19,13 +19,13 @@ pip install pyzbar[scripts]
 
 
 
-Dependencies for Visual Servoing package
+~~Dependencies for Visual Servoing package~~
 ```
 sudo apt-get install libvisp-dev libvisp-doc visp-images-data
 sudo apt-get install ros-<distro>-visp
 sudo apt-get install ros-<distro>-vision-visp
 ```
-In your catkin workspace add this repo. The Custom package will build on top.
+~~In your catkin workspace add this repo. The Custom package will build on top.~~
 
 ```
 cd ~/catkin_ws/src
@@ -35,6 +35,8 @@ catkin_make
 ```
 
 ## Aruco Marker Detection
+Install Depenedancy
+
 ```bash
 cd ~/catkin_ws/src
 git clone https://github.com/pal-robotics/aruco_ros.git
