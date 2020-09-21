@@ -13,7 +13,7 @@ find_package(Eigen3 REQUIRED)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-   angles
+    angles
     control_toolbox
     gazebo_ros
     robot_controllers
@@ -28,6 +28,11 @@ find_package(catkin REQUIRED COMPONENTS
    cv_bridge
    image_transport
    message_generation
+   visp_auto_tracker
+   visp_bridge
+   visp_camera_calibration
+   visp_hand2eye_calibration
+   visp_tracker
 )
 
 ## System dependencies are found with CMake's conventions
@@ -173,7 +178,7 @@ add_library(${PROJECT_NAME}-laserScan src/laserScan.cpp)
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}-teleop src/robot_ps4_controller.cpp)
 add_executable(${PROJECT_NAME}-sensing src/main.cpp src/environmentSensing.cpp)
-
+add_executable(${PROJECT_NAME}-qr_pbvs src/qr_pbvs.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -185,6 +190,7 @@ add_executable(${PROJECT_NAME}-sensing src/main.cpp src/environmentSensing.cpp)
 ## same as for the library above
 add_dependencies(${PROJECT_NAME}-teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}-qr_pbvs ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
@@ -192,6 +198,9 @@ target_link_libraries(${PROJECT_NAME}-teleop
   ${catkin_LIBRARIES}
 )
 target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-qr_pbvs
+   ${catkin_LIBRARIES}
+ )
 #############
 ## Install ##
 #############
