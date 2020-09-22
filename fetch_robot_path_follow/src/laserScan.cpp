@@ -22,11 +22,11 @@ bool LaserDetection::detectObtacle(sensor_msgs::LaserScan::ConstPtr laserScan)
     }
     if (laser_reading <= LASER_LIMIT + RAD_ROBOT) // check if condition is valid
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 
