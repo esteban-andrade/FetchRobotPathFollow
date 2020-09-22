@@ -1,25 +1,25 @@
-#include "../include/FetchRobotPathFollow/robot_ps4_controller.h"
+#include "../include/FetchRobotPathFollow/guider_joy_teleop.h"
 
-RobotTeleopJoy::RobotTeleopJoy(ros::NodeHandle nh)
+GuiderJoyTeleop::GuiderJoyTeleop(ros::NodeHandle nh)
     :nh_(nh)
 {
-    joy_sub_ = nh_.subscribe("/joy", 1000, &RobotTeleopJoy::joyCallback, this);
+    joy_sub_ = nh_.subscribe("/joy", 1000, &GuiderJoyTeleop::joyCallback, this);
 
     vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
     
 }
 
-RobotTeleopJoy::~RobotTeleopJoy(){
+GuiderJoyTeleop::~GuiderJoyTeleop(){
 
 }
 
-void RobotTeleopJoy::joyCallback(const sensor_msgs::JoyPtr &msg){
+void GuiderJoyTeleop::joyCallback(const sensor_msgs::JoyPtr &msg){
     
     twistMsg_.linear.x = msg->axes.at(1)*2;
     twistMsg_.angular.z = msg->axes.at(0)*2;
 }
 
-void RobotTeleopJoy::velocityPublisher(){
+void GuiderJoyTeleop::velocityPublisher(){
     ros::Rate loop_rate(20);
     while (ros::ok()){
         vel_pub_.publish(twistMsg_);
@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 
   ros::NodeHandle nh;
   
-  std::shared_ptr<RobotTeleopJoy> robot(new RobotTeleopJoy(nh));
-  std::thread vel(&RobotTeleopJoy::velocityPublisher,robot);
+  std::shared_ptr<GuiderJoyTeleop> robot(new GuiderJoyTeleop(nh));
+  std::thread vel(&GuiderJoyTeleop::velocityPublisher,robot);
 
   ros::spin();
 

@@ -1,5 +1,5 @@
-#ifndef ROBOT_TELEOP_JOY_H
-#define ROBOT_TELEOP_JOY_H
+#ifndef GUIDER_JOY_TELEOP_H
+#define GUIDER_JOY_TELEOP_H
 
 #include "ros/ros.h"
 
@@ -10,12 +10,12 @@
 #include "std_msgs/Float32.h"
 
 
-class RobotTeleopJoy
+class GuiderJoyTeleop
 {
 public:
 
-    RobotTeleopJoy(ros::NodeHandle nh);
-    ~RobotTeleopJoy();
+    GuiderJoyTeleop(ros::NodeHandle nh);
+    ~GuiderJoyTeleop();
 
     void joyCallback(const sensor_msgs::JoyPtr &msg);
 
@@ -30,4 +30,4 @@ private:
 };
 
 
-#endif // ROBOT_TELEOP_JOY_H
+#endif // GUIDER_JOY_TELEOP_H
