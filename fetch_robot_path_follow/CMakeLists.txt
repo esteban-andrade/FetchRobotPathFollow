@@ -177,9 +177,9 @@ add_library(${PROJECT_NAME}-laserScan src/laserScan.cpp)
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}-teleop src/robot_ps4_controller.cpp)
-add_executable(${PROJECT_NAME}-sensing src/main.cpp src/environmentSensing.cpp)
+#add_executable(${PROJECT_NAME}-sensing src/main.cpp src/environmentSensing.cpp)
 add_executable(${PROJECT_NAME}-qr_pbvs src/qr_pbvs.cpp)
-add_executable(${PROJECT_NAME}-guider_follow src/guider_follow.cpp)
+add_executable(${PROJECT_NAME}-guider_follow src/main.cpp src/guider_follow.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -190,7 +190,7 @@ add_executable(${PROJECT_NAME}-guider_follow src/guider_follow.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(${PROJECT_NAME}-teleop ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(${PROJECT_NAME}-sensing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(${PROJECT_NAME}-qr_pbvs ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(${PROJECT_NAME}-guider_follow ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
@@ -198,9 +198,9 @@ add_dependencies(${PROJECT_NAME}-guider_follow ${${PROJECT_NAME}_EXPORTED_TARGET
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-teleop ${catkin_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME}-sensing ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-qr_pbvs ${catkin_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-guider_follow ${catkin_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-guider_follow ${catkin_LIBRARIES} ${PROJECT_NAME}-laserScan ${OpenCV_LIBRARIES})
 #############
 ## Install ##
 #############
