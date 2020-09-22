@@ -19,21 +19,6 @@ pip install pyzbar[scripts]
 
 
 
-~~Dependencies for Visual Servoing package~~
-```
-sudo apt-get install libvisp-dev libvisp-doc visp-images-data
-sudo apt-get install ros-<distro>-visp
-sudo apt-get install ros-<distro>-vision-visp
-```
-~~In your catkin workspace add this repo. The Custom package will build on top.~~
-
-```
-cd ~/catkin_ws/src
-git clone https://github.com/lagadic/vision_visp.git
-cd ~/catkin_ws
-catkin_make
-```
-
 ## Aruco Marker Detection
 Install Depenedancy
 
@@ -53,3 +38,31 @@ roslaunch fetch_robot_path_follow mazeFetch.launch
 ```bash
  roslaunch fetch_robot_path_follow follow_guider.launch
 ```
+
+
+## VISP Tracker
+Note: This is another Visual servoing package to track a QR code. This will aid with external visualization of the Marker. 
+This will be optional.
+
+
+~~~~
+```Dependencies for Visual Servoing package
+sudo apt-get install libvisp-dev libvisp-doc visp-images-data
+sudo apt-get install ros-<distro>-visp
+sudo apt-get install ros-<distro>-vision-visp
+```
+~~~~
+
+```In your catkin workspace add this repo. The Custom package will build on top.
+cd ~/catkin_ws/src
+git clone https://github.com/lagadic/vision_visp.git
+cd ~/catkin_ws
+catkin_make
+```
+
+~~~~
+To run it please type: 
+
+````
+roslaunch fetch_robot_path_follow qr_pbvs.launch
+````
