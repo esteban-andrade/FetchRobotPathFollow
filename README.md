@@ -44,34 +44,12 @@ cd ~/catkin_ws
 catkin_make
 ```
 
-Under the **ARUCO_ROS** package, replace **_single.launch_** file with the following:
-```xml
-<launch>
-
-    <arg name="markerId"        default="369"/>
-    <arg name="markerSize"      default="0.36"/>    <!-- in m -->
-    <arg name="eye"             default="/head_camera/rgb/"/>
-    <arg name="marker_frame"    default="aruco_marker_frame"/>
-    <arg name="ref_frame"       default="result"/>  <!-- leave empty and the pose will be published wrt param parent_name -->
-    <arg name="corner_refinement" default="LINES" /> <!-- NONE, HARRIS, LINES, SUBPIX -->
-
-
-    <node pkg="aruco_ros" type="single" name="aruco_single">
-        <remap from="/camera_info" to="$(arg eye)/camera_info" />
-        <remap from="/image" to="$(arg eye)/image_raw" />
-        <param name="image_is_rectified" value="True"/>
-        <param name="marker_size"        value="$(arg markerSize)"/>
-        <param name="marker_id"          value="$(arg markerId)"/>
-        <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
-        <param name="camera_frame"       value="$(arg eye)_camera_optical_frame"/>
-        <param name="marker_frame"       value="$(arg marker_frame)" />
-        <param name="corner_refinement"  value="$(arg corner_refinement)" />
-    </node>
-
-</launch>
- ```
-
- Run:
+## Operation
+Launch world, robots, joy_controller_teleop:
 ```bash
- roslaunch aruco_ros single.launch
+roslaunch fetch_robot_path_follow mazeFetch.launch
+```
+ Marker and following tracking:
+```bash
+ roslaunch fetch_robot_path_follow follow_guider.launch
 ```
