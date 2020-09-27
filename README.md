@@ -8,17 +8,6 @@ Here is the Repository for Fetch robot following a Path based on QR codes.
  cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/
  ```
 
-~~For QR code detection install the following: (you may need to install pip)~~
-
-```bash
-sudo apt-get install libzbar0
-pip install pyzbar
-pip install pyzbar[scripts]
-
-```
-
-
-
 ## Aruco Marker Detection
 Install Depenedancy
 
@@ -34,7 +23,7 @@ Launch world, robots, joy_controller_teleop:
 ```bash
 roslaunch fetch_robot_path_follow mazeFetch.launch
 ```
- Marker and following tracking:
+ Marker tracking and guider following:
 ```bash
  roslaunch fetch_robot_path_follow follow_guider.launch
 ```

@@ -36,7 +36,7 @@
 
   <!-- Start DS4 teleop -->
   <node pkg="joy" type="joy_node" name="joy_node"/>
-  <node name="teleop" pkg="fetch_robot_path_follow" type="fetch_robot_path_follow-teleop" args="-d $(find fetch_robot_path_follow)" output="screen" respawn="true">
+  <node name="guider_joy_teleop" pkg="fetch_robot_path_follow" type="fetch_robot_path_follow-guider_joy_teleop" args="-d $(find fetch_robot_path_follow)" output="screen" respawn="true">
       <remap from="/cmd_vel" to="$(arg teleop_topic)"/>
   </node>
 </launch>
