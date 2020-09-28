@@ -128,12 +128,14 @@ void GuiderFollow::stop()
         std::chrono::duration<double, std::milli> Elapsed = End - Start;
         twistMsg_.angular.z = 0.3;
         twistMsg_.linear.x = 0.0;
+        vel_pub_.publish(twistMsg_);
         if (Elapsed.count() >= 30000.0)
         {
           twistMsg_.angular.z = 0.0;
           twistMsg_.linear.x = 0.0;
 
           ROS_INFO_STREAM("No Guider detected");
+          vel_pub_.publish(twistMsg_);
           break;
         }
       }
