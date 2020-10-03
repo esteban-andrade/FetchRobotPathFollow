@@ -26,7 +26,7 @@ roslaunch fetch_robot_path_follow mazeFetch.launch
 
 >Note: If you do not have a bluetooth controller available, standard keyboard teleop can be used:
 ```bash
-rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/robot1/cmd_vel
 ```
 
  Launch Marker tracking and guider following:
