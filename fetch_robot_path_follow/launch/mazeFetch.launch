@@ -28,7 +28,7 @@
   	<include file="$(find fetch_robot_path_follow)/launch/spawn_sdf.launch">
       <arg name="robot_name" value="turtlebot_burger"/>
       <arg name="x" value="3.0"/>
-      <arg name="y" value="-2.0"/>
+      <arg name="y" value="2.0"/>
       <arg name="z" value="0.0"/>
       <arg name="sdf_robot_file" value="$(find fetch_robot_path_follow)/models/custom_turtle/model.sdf"/>
     </include>
