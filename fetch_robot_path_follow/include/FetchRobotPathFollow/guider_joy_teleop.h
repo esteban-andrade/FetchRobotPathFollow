@@ -1,3 +1,14 @@
+/**
+ * @file guider_joy_teleop.h
+ * @author Ajal Singh
+ * @brief Allows joystick control of /cmd_vel subscribers
+ * @version 0.1
+ * @date 2020-10-03
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #ifndef GUIDER_JOY_TELEOP_H
 #define GUIDER_JOY_TELEOP_H
 

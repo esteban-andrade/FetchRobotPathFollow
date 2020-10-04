@@ -27,14 +27,14 @@
   <group ns="robot1">
   	<include file="$(find fetch_robot_path_follow)/launch/spawn_sdf.launch">
       <arg name="robot_name" value="turtlebot_burger"/>
-      <arg name="x" value="4.0"/>
-      <arg name="y" value="0.0"/>
+      <arg name="x" value="3.0"/>
+      <arg name="y" value="2.0"/>
       <arg name="z" value="0.0"/>
       <arg name="sdf_robot_file" value="$(find fetch_robot_path_follow)/models/custom_turtle/model.sdf"/>
     </include>
   </group>
 
-  <!-- Start DS4 teleop -->
+  <!-- Start controller teleop -->
   <node pkg="joy" type="joy_node" name="joy_node"/>
   <node name="guider_joy_teleop" pkg="fetch_robot_path_follow" type="fetch_robot_path_follow-guider_joy_teleop" args="-d $(find fetch_robot_path_follow)" output="screen" respawn="true">
       <remap from="/cmd_vel" to="$(arg teleop_topic)"/>

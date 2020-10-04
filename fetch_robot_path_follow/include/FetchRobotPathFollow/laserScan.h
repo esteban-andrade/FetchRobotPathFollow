@@ -1,3 +1,14 @@
+/**
+ * @file laserScan.h
+ * @author Esteban Andrade
+ * @brief 
+ * @version 0.1
+ * @date 2020-10-04
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #ifndef DETECTCABINET_H
 #define DETECTCABINET_H
 

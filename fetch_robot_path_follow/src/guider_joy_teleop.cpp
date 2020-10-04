@@ -16,7 +16,7 @@ GuiderJoyTeleop::~GuiderJoyTeleop(){
 void GuiderJoyTeleop::joyCallback(const sensor_msgs::JoyPtr &msg){
     
     twistMsg_.linear.x = msg->axes.at(1)*2;
-    twistMsg_.angular.z = msg->axes.at(0)*2;
+    twistMsg_.angular.z = msg->axes.at(3)*2;
 }
 
 void GuiderJoyTeleop::velocityPublisher(){

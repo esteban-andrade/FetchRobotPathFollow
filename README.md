@@ -1,12 +1,8 @@
 # FetchRobotPathFollow
 Here is the Repository for Fetch robot following a Path based on QR codes.
 
->Note Please Have the turtle bot and Fetch package installed in the catkin workspace. The nodes will build on top of that.
+>Note Please Have the turtle bot and Fetch package installed in the catkin workspace. This package will build on top of that.
 
->Note: If the models do not spawn. Please run the following. 
- ```bash
- cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/
- ```
 
 ## Aruco Marker Detection
 Install Depenedancy
@@ -19,39 +15,26 @@ catkin_make
 ```
 
 ## Operation
-Launch world, robots, joy_controller_teleop:
+Launch the world, fetch & guider robot, joy_controller_teleop (requries bluetooth controller) nodes:
 ```bash
 roslaunch fetch_robot_path_follow mazeFetch.launch
 ```
- Marker tracking and guider following:
+>Note: If the models do not spawn. Please run the following and relaunch. 
+ ```bash
+ cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/
+ ```
+
+>Note: If you do not have a bluetooth controller available, standard keyboard teleop can be used:
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/robot1/cmd_vel
+```
+
+ Launch Marker tracking and guider following:
 ```bash
  roslaunch fetch_robot_path_follow follow_guider.launch
 ```
-
-
-## VISP Tracker
-Note: This is another Visual servoing package to track a QR code. This will aid with external visualization of the Marker. 
-This will be optional.
-
-
-~~~~
-```Dependencies for Visual Servoing package
-sudo apt-get install libvisp-dev libvisp-doc visp-images-data
-sudo apt-get install ros-<distro>-visp
-sudo apt-get install ros-<distro>-vision-visp
-```
-~~~~
-
-```In your catkin workspace add this repo. The Custom package will build on top.
+## RVIZ Visualisation
+```bash
 cd ~/catkin_ws/src
-git clone https://github.com/lagadic/vision_visp.git
-cd ~/catkin_ws
-catkin_make
+rosrun rviz rviz -d fetch_robot_path_follow/rviz/rviz_fetch.rviz
 ```
-
-~~~~
-To run it please type: 
-
-````
-roslaunch fetch_robot_path_follow qr_pbvs.launch
-````
