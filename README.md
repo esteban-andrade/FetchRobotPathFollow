@@ -1,7 +1,15 @@
 # FetchRobotPathFollow
 Here is the Repository for Fetch robot following a Path based on QR codes.
 
->Note Please Have the turtle bot and Fetch package installed in the catkin workspace. This package will build on top of that.
+>Note Please Have the Turtle bot and Fetch package installed in the catkin workspace. This package will build on top of the dependencies of these.
+
+## Authors
+* Esteban Andrade
+* Ajal Singh
+
+> To visualise the video click on the image below
+[![Demostration video](https://img.youtube.com/vi/TRuqb9f4Vtk/sddefault.jpg)](https://youtu.be/TRuqb9f4Vtk)
+
 
 
 ## Aruco Marker Detection

@@ -7,14 +7,15 @@ GuiderFollow::GuiderFollow(ros::NodeHandle nh)
   laser_sub_ = nh_.subscribe("/base_scan_raw", 10, &GuiderFollow::laserCallBack, this);
 
   vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
-  pose_tracker_ = nh_.subscribe("/tf_static", 10, &GuiderFollow::poseCallback, this);
+  //pose_tracker_ = nh_.subscribe("/tf_static", 10, &GuiderFollow::poseCallback, this);
 
   marker_.threshold_distance = 1.0 - marker_.head_2_base_offset;
   ROS_INFO_STREAM("init");
 
   duration_ = start_time_ - start_time_;
 
-  sweep_complete_ = false;;
+  sweep_complete_ = false;
+  ;
   obstacle_reported_ = false;
   search_reported_ = false;
 }
@@ -40,7 +41,7 @@ void GuiderFollow::markerCallback(const geometry_msgs::Vector3StampedPtr &msg)
   marker_.pose.vector.z = msg->vector.y;
 
   marker_.shortest_dist = roundf64(sqrt(pow(marker_.pose.vector.x, 2) + pow(marker_.pose.vector.y, 2)) * 10) / 10;
-  
+
   // Maintain 1m distance between robot and guider
   if (marker_.shortest_dist <= (marker_.threshold_distance + 0.01) && marker_.shortest_dist >= (marker_.threshold_distance - 0.01))
   {
@@ -60,7 +61,7 @@ void GuiderFollow::markerCallback(const geometry_msgs::Vector3StampedPtr &msg)
     if (!obstacle_detected_)
     {
       // proportional control for linear velocity
-        double error = marker_.shortest_dist - marker_.threshold_distance;
+      double error = marker_.shortest_dist - marker_.threshold_distance;
 
       // Move forwards or backwards
       if (marker_.shortest_dist > marker_.threshold_distance * 1.5)
@@ -77,10 +78,12 @@ void GuiderFollow::markerCallback(const geometry_msgs::Vector3StampedPtr &msg)
       }
 
       // Turn left or right
-      if (marker_.pose.vector.y == 0){
+      if (marker_.pose.vector.y == 0)
+      {
         twistMsg_.angular.z = 0;
       }
-      else{
+      else
+      {
         twistMsg_.angular.z = -marker_.pose.vector.y;
       }
       obstacle_reported_ = false;
@@ -100,28 +103,32 @@ void GuiderFollow::laserCallBack(const sensor_msgs::LaserScanConstPtr &msg)
 
   if (obstacle_detected_)
   {
-    if (marker_.detected){
-      if (!obstacle_reported_){
+    if (marker_.detected)
+    {
+      if (!obstacle_reported_)
+      {
         ROS_INFO_STREAM("Obstacle blocking path. Stopped following");
         obstacle_reported_ = true;
       }
       twistMsg_.angular.z = 0;
       twistMsg_.linear.x = 0;
     }
-    else{
-      if (!obstacle_reported_){
+    else
+    {
+      if (!obstacle_reported_)
+      {
         ROS_INFO_STREAM("Obstacle detected");
         obstacle_reported_ = true;
       }
       twistMsg_.angular.z = 0;
       twistMsg_.linear.x = -2.0;
     }
-    
-    vel_pub_.publish(twistMsg_);
 
+    vel_pub_.publish(twistMsg_);
   }
 
-  if (!obstacle_detected_){
+  if (!obstacle_detected_)
+  {
     obstacle_reported_ = false;
   }
 }
@@ -131,32 +138,37 @@ void GuiderFollow::stop()
   while (ros::ok)
   {
     //reset duration timer
-    if (duration_ > ros::Duration(20.0)){
+    if (duration_ > ros::Duration(20.0))
+    {
       start_time_ = ros::Time::now();
     }
-    
+
     duration_ = ros::Time::now() - start_time_;
 
     // Search for guider clockwise
-    if (duration_ >= ros::Duration(2.0) && duration_ <= ros::Duration(8.0) && !marker_.detected && !sweep_complete_){
+    if (duration_ >= ros::Duration(2.0) && duration_ <= ros::Duration(8.0) && !marker_.detected && !sweep_complete_)
+    {
       twistMsg_.angular.z = -1.57;
       twistMsg_.linear.x = 0.0;
       vel_pub_.publish(twistMsg_);
-      if (!search_reported_){
+      if (!search_reported_)
+      {
         ROS_INFO_STREAM("Searching for guider");
         search_reported_ = true;
       }
     }
 
     // Search for guider anti-clockwise
-    if (duration_ > ros::Duration(8.0) && duration_ <= ros::Duration(14.0) && !marker_.detected && !sweep_complete_){
+    if (duration_ > ros::Duration(8.0) && duration_ <= ros::Duration(14.0) && !marker_.detected && !sweep_complete_)
+    {
       twistMsg_.angular.z = 1.57;
       twistMsg_.linear.x = 0.0;
       vel_pub_.publish(twistMsg_);
     }
 
     // Report no guider detected
-    if (duration_ == ros::Duration(14.0) && !marker_.detected && !sweep_complete_){
+    if (duration_ == ros::Duration(14.0) && !marker_.detected && !sweep_complete_)
+    {
       sweep_complete_ = true;
       search_reported_ = false;
       ROS_INFO_STREAM("No Guider detected. Cease searching");
