@@ -7,7 +7,7 @@ Here is the Repository for Fetch robot following a Path based on QR codes.
 * Esteban Andrade
 * Ajal Singh
 
-[![Demostration video](https://img.youtube.com/vi/TRuqb9f4Vtk/default.jpg)](https://youtu.be/TRuqb9f4Vtk)
+[![Demostration video](https://img.youtube.com/vi/TRuqb9f4Vtk/mqdefault.jpg)](https://youtu.be/TRuqb9f4Vtk)
 
 
 
