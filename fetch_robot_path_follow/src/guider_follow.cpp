@@ -14,13 +14,13 @@ GuiderFollow::GuiderFollow(ros::NodeHandle nh)
   duration_ = start_time_ - start_time_;
 
   sweep_complete_ = false;
-  ;
   obstacle_reported_ = false;
   search_reported_ = false;
 }
 
 GuiderFollow::~GuiderFollow()
 {
+  
 }
 
 void GuiderFollow::markerCallback(const geometry_msgs::Vector3StampedPtr &msg)
