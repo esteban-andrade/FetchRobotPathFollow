@@ -7,7 +7,6 @@ GuiderFollow::GuiderFollow(ros::NodeHandle nh)
   laser_sub_ = nh_.subscribe("/base_scan_raw", 10, &GuiderFollow::laserCallBack, this);
 
   vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
-  pose_tracker_ = nh_.subscribe("/tf_static", 10, &GuiderFollow::poseCallback, this);
 
   marker_.threshold_distance = 1.0 - marker_.head_2_base_offset;
   ROS_INFO_STREAM("init");
