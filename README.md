@@ -7,11 +7,9 @@ Here is the Repository for Fetch robot following a Path based on QR codes.
 * Esteban Andrade
 * Ajal Singh
 
-[![Watch the video]](https://youtu.be/TRuqb9f4Vtk)
+[![Demostration video](https://img.youtube.com/vi/TRuqb9f4Vtk/default.jpg)](https://youtu.be/TRuqb9f4Vtk)
 
-```bash
-https://youtu.be/TRuqb9f4Vtk
-```
+
 
 ## Aruco Marker Detection
 Install Depenedancy
