@@ -3,6 +3,7 @@
 * Esteban Andrade
     * Environment/World creation
     * Obstacle detection 
+    * Repository Setup
 * Ajal Singh
     * Controller teleop node (Guider control)
     * Guider Following
