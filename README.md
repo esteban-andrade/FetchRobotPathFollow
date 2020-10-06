@@ -4,10 +4,12 @@
     * Environment/World creation
     * Obstacle detection 
     * Repository Setup
+    * Documentation
 * Ajal Singh
     * Controller teleop node (Guider control)
     * Guider Following
     * Demo video
+    * Documentation
 
 ## Dependancies
 Here is the Repository for Fetch robot following a Path based on QR codes.
