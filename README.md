@@ -1,4 +1,5 @@
 # FetchRobotPathFollow
+Here is the Repository for Fetch robot following a Path based on QR codes.
 ## Authors & Contributions
 * Esteban Andrade
     * Environment/World creation
@@ -12,9 +13,7 @@
     * Documentation
 
 ## Dependancies
-Here is the Repository for Fetch robot following a Path based on QR codes.
-
-> Please have the Turtlebot and Fetch packages installed in your catkin workspace. This package will build on top of these dependencies.
+Please have the Turtlebot and Fetch packages installed in your catkin workspace. This package will build on top of these dependencies.
 ## Aruco Marker Detection
 Aruco marker detection is used to detect the guider the robot.
 Install:
@@ -54,6 +53,14 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/robot1/cmd_vel
 ```bash
  roslaunch fetch_robot_path_follow follow_guider.launch
 ```
+The guider can be made traverse through the world using the 2 joysticks on your controller or keyboard using teleop_twist.
+
+## Expected Behaviour
+The fetch robot will follow the Guider robot as it traverses through the environment as long as the AR marker is clearly seen by the Fetch's RGBD camera.
+If the Guider cannot be seen, the Fetch will sweep clockwise and anti-clockwise until the Guider is located. If the Guider is not found, the Fetch will stop and wait for the Guider to traverse to a location within camera view before resuming the following operation. 
+If an obstacle obstructs the path of the Fetch while the Guider is in view, the Fetch will cease following and wait for the Guider to relocate.
+If an obstacle is detected when the Guider is not in view (i.e has just left the camera frame) the Fetch will back up and scan the area in search of the guider.
+The Fetch can view and read other AR markers within the environment, however they will not affect its following operation.
 
 ## RVIZ Visualisation
 To view sensor and message data:
