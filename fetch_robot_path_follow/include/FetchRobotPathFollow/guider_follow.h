@@ -17,6 +17,7 @@
 #include "geometry_msgs/Vector3Stamped.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
+#include "tf2_msgs/TFMessage.h"
 #include "laserScan.h"
 #include <cmath>
 #include <chrono>
