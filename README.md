@@ -15,7 +15,7 @@ Here is the Repository for Fetch robot following a Path based on QR codes.
 ## Dependancies
 Please have the Turtlebot and Fetch packages installed in your catkin workspace. This package will build on top of these dependencies.
 ## Aruco Marker Detection
-Aruco marker detection is used to detect the guider the robot.
+Aruco marker detection is used to detect the guider robot.
 Install:
 
 ```bash
@@ -41,7 +41,7 @@ roslaunch fetch_robot_path_follow mazeFetch.launch
 ```
 >Note: If the models do not spawn. Please run the following and relaunch. 
  ```bash
- cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/
+ cp -avr ~/catkin_ws/src/fetch_robot_path_follow/models/ ~/.gazebo/models
  ```
 
 >Note: If you do not have a bluetooth controller available, standard keyboard teleop can be used:
