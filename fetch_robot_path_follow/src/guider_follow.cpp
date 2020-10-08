@@ -4,7 +4,7 @@ GuiderFollow::GuiderFollow(ros::NodeHandle nh)
     : nh_(nh)
 {
   marker_sub_ = nh_.subscribe("/aruco_single/position", 1000, &GuiderFollow::markerCallback, this);
-  laser_sub_ = nh_.subscribe("/base_scan_raw", 10, &GuiderFollow::laserCallBack, this);
+  laser_sub_ = nh_.subscribe("/base_scan_raw", 100, &GuiderFollow::laserCallBack, this);
 
   vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 
@@ -20,7 +20,6 @@ GuiderFollow::GuiderFollow(ros::NodeHandle nh)
 
 GuiderFollow::~GuiderFollow()
 {
-  
 }
 
 void GuiderFollow::markerCallback(const geometry_msgs::Vector3StampedPtr &msg)

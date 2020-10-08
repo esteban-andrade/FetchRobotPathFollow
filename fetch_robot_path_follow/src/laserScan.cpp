@@ -1,7 +1,7 @@
 #include "../include/FetchRobotPathFollow/laserScan.h"
 
-static const int LASER_FIELD_OF_VIEW = 120;
-static const double LASER_LIMIT = 0.15;
+static const int LASER_FIELD_OF_VIEW = 140;
+static const double LASER_LIMIT = 0.35;
 static const double RAD_ROBOT = 0.257;
 
 LaserDetection::LaserDetection()
